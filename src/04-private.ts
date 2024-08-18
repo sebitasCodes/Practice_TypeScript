@@ -10,13 +10,19 @@ export class MyDate {
   }
 
   printFormat(): string {
-    return `${this.day}/${this.month}/${this.year}`;
+    const day = this.addPaddign(this.day)
+    const month = this.addPaddign(this.month)
+    return `${day}/${month}/${this.year}`;
   }
 
-  addPaddign () {
-
+  private addPaddign (value : number) : string {
+    if (value < 10) {
+      return `0${value}`
+    }
+    return `${value}`;
   }
-  
+
+
   add(amount: number, type: 'days' | 'months' | 'years') {
     if (type === 'days') {
       this.day += amount;
@@ -34,10 +40,15 @@ export class MyDate {
       this.year += amount;
     }
   }
+
+  getDaY () {
+    return this.day
+  }
 }
 
-const myDate = new MyDate(2024, 6, 16);
+const myDate = new MyDate(2024, 6, 4);
 
+console.log( myDate.printFormat())
 
+console.log(myDate.getDaY())
 
-console.log(myDate.printFormat);
